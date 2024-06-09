@@ -1,13 +1,15 @@
 import numpy as np
 from utils.lover import Lover
 import json
+import sys
 
 NUMBER_OF_SAME_LOVERS = 3
 NUMBER_OF_YEARS_LIVED = 10
+NUMBER_OF_DIFFERENT_LOVERS = 20
 
 def main():
     lovers = []
-    x = np.linspace(0.01,1,20)
+    x = np.linspace(0.01,1,NUMBER_OF_DIFFERENT_LOVERS)
     for chance in x:
         for _ in range(NUMBER_OF_SAME_LOVERS):
             lovers.append(Lover(chance, 20))
@@ -25,5 +27,9 @@ def saveResultAsJSON(result, name="results.json"):
         file.write(json.dumps(result))
 
 if __name__ == "__main__":
+    if len(sys.argv) == 4:
+        NUMBER_OF_SAME_LOVERS = int(sys.argv[1])
+        NUMBER_OF_YEARS_LIVED = int(sys.argv[2])
+        NUMBER_OF_YEARS_LIVED = int(sys.argv[3])
     main()
 
