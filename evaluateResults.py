@@ -2,8 +2,17 @@ import numpy as np
 import json
 import matplotlib.pyplot as plt
 
+
 def main():
     result = _getResult()
+    visualizeRelativeChange(result)
+    
+
+def visualizeRelativeChange(result):
+    plt.plot(result["relativeChange"])
+    plt.show()
+
+def visualizeNotLoverChances(result):
     notLovers = result["result"]
     print(len(notLovers))
     print(result["numberOfLovers"])
