@@ -2,6 +2,7 @@ import numpy as np
 from utils.lover import Lover
 import json
 import sys
+from tqdm import tqdm
 
 NUMBER_OF_YEARS_LIVED = 10
 NUMBER_OF_LOVERS = 20
@@ -14,8 +15,8 @@ def main():
     x = np.random.normal(DISTRIBUTION_MEAN, DISTRIBUTION_SIGMA, NUMBER_OF_LOVERS)
     for chance in x:
         lovers.append(Lover(chance, 0.5))
-    for _ in range(NUMBER_OF_YEARS_LIVED):
-        for lover in lovers:
+    for _ in tqdm(range(NUMBER_OF_YEARS_LIVED)):
+        for lover in tqdm(lovers):
             lover.liveYear()
     notLoved = []
     for lover in lovers:    
