@@ -3,16 +3,17 @@ from utils.lover import Lover
 import json
 import sys
 
-NUMBER_OF_SAME_LOVERS = 3
 NUMBER_OF_YEARS_LIVED = 10
-NUMBER_OF_DIFFERENT_LOVERS = 20
+NUMBER_OF_LOVERS = 20
+DISTRIBUTION_MEAN = 0.5
+DISTRIBUTION_SIGMA = 0.3
+
 
 def main():
     lovers = []
-    x = np.linspace(0.01,1,NUMBER_OF_DIFFERENT_LOVERS)
+    x = np.random.normal(DISTRIBUTION_MEAN, DISTRIBUTION_SIGMA, NUMBER_OF_LOVERS)
     for chance in x:
-        for _ in range(NUMBER_OF_SAME_LOVERS):
-            lovers.append(Lover(chance, 0.5))
+        lovers.append(Lover(chance, 0.5))
     for _ in range(NUMBER_OF_YEARS_LIVED):
         for lover in lovers:
             lover.liveYear()
@@ -23,17 +24,21 @@ def main():
     saveResultAsJSON(notLoved)
 
 def saveResultAsJSON(result, name="results.json"):
-    saveParams = {"numberOfSameLovers": NUMBER_OF_SAME_LOVERS,
-     "numberOfYearsLived:": NUMBER_OF_YEARS_LIVED,
-     "numberOfDifferentLovers": NUMBER_OF_DIFFERENT_LOVERS,
-     "result": result}
+    saveParams = {
+        "numberOfLovers": NUMBER_OF_LOVERS,
+        "numberOfYearsLived:": NUMBER_OF_YEARS_LIVED,
+        "distributionMean": DISTRIBUTION_MEAN,
+        "distributionSigma": DISTRIBUTION_SIGMA,
+        "result": result
+        }
     with open(name, "w", encoding="utf-8") as file:
         file.write(json.dumps(saveParams))
 
 if __name__ == "__main__":
-    if len(sys.argv) == 4:
-        NUMBER_OF_SAME_LOVERS = int(sys.argv[1])
-        NUMBER_OF_YEARS_LIVED = int(sys.argv[2])
-        NUMBER_OF_DIFFERENT_LOVERS = int(sys.argv[3])
+    if len(sys.argv) == 5:
+        NUMBER_OF_YEARS_LIVED = int(sys.argv[1])
+        NUMBER_OF_LOVERS = int(sys.argv[2])
+        DISTRIBUTION_MEAN = float(sys.argv[3])
+        DISTRIBUTION_SIGMA = float(sys.argv[4])
     main()
 
