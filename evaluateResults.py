@@ -7,9 +7,12 @@ def main():
     notLovers = result["result"]
     print(len(notLovers))
     print(result["numberOfLovers"])
-    data = [0 if x < 0 else x for x in notLovers]
-    bins = np.arange(0, 1.1, 0.1)
-    plt.hist(data, bins=bins, edgecolor='black')
+    data = [x for x in notLovers if x > 0]
+    bins = np.arange(0, 1.05, 0.05)
+    counts, bin_edges, patches = plt.hist(data, bins=bins, edgecolor='black', density=True)
+
+    print("Bin counts (density):", counts)
+    print("Sum of bin counts (density):", np.sum(counts * np.diff(bin_edges)))
     plt.show()
 
 
