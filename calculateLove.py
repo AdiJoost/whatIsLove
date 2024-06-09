@@ -12,7 +12,7 @@ def main():
     x = np.linspace(0.01,1,NUMBER_OF_DIFFERENT_LOVERS)
     for chance in x:
         for _ in range(NUMBER_OF_SAME_LOVERS):
-            lovers.append(Lover(chance, 20))
+            lovers.append(Lover(chance, 0.5))
     for _ in range(NUMBER_OF_YEARS_LIVED):
         for lover in lovers:
             lover.liveYear()
@@ -23,8 +23,12 @@ def main():
     saveResultAsJSON(notLoved)
 
 def saveResultAsJSON(result, name="results.json"):
+    saveParams = {"numberOfSameLovers": NUMBER_OF_SAME_LOVERS,
+     "numberOfYearsLived:": NUMBER_OF_YEARS_LIVED,
+     "numberOfDifferentLovers": NUMBER_OF_DIFFERENT_LOVERS,
+     "result": result}
     with open(name, "w", encoding="utf-8") as file:
-        file.write(json.dumps(result))
+        file.write(json.dumps(saveParams))
 
 if __name__ == "__main__":
     if len(sys.argv) == 4:
