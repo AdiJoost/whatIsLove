@@ -31,5 +31,8 @@ class Lover():
     def isInLove(self) -> bool:
         return self.inLove
     
+    def getLoverChance(self):
+        return self.chanceToFindLove
+    
     def hasNeverLoved(self) -> bool:
         return self.lovedYears == 0;
