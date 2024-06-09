@@ -34,6 +34,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 4:
         NUMBER_OF_SAME_LOVERS = int(sys.argv[1])
         NUMBER_OF_YEARS_LIVED = int(sys.argv[2])
-        NUMBER_OF_YEARS_LIVED = int(sys.argv[3])
+        NUMBER_OF_DIFFERENT_LOVERS = int(sys.argv[3])
     main()
 
